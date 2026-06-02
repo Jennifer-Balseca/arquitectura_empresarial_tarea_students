@@ -13,7 +13,7 @@ open class StudentController(
 
     private val logger = LoggerFactory.getLogger(StudentController::class.java)
 
-    @PostMapping("/api/students")
+    @PostMapping("/students")
     open fun createStudent(
         @RequestBody
         request: StudentRequest
@@ -22,7 +22,7 @@ open class StudentController(
         return studentService.createStudent(request)
     }
 
-    @GetMapping("/api/students")
+    @GetMapping("/students")
     open fun getAllStudents(): List<StudentResponse> {
         logger.info("Getting all students")
         return studentService.getAllStudents()
