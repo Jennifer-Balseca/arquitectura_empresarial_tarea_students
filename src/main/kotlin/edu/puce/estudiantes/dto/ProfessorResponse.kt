@@ -1,6 +1,6 @@
 package edu.puce.estudiantes.dto
 
-class StudentResponse(
+data class ProfessorResponse(
     val id: Long,
     val name: String,
     val email: String

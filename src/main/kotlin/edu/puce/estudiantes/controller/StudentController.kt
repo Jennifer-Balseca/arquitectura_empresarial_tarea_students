@@ -1,32 +1,38 @@
 package edu.puce.estudiantes.controller
 
-import edu.puce.estudiantes.dto.StudentRequest
-import edu.puce.estudiantes.dto.StudentResponse
 import edu.puce.estudiantes.service.StudentService
-import org.slf4j.LoggerFactory
+import edu.puce.estudiantes.dto.StudentRequest
+import org.springframework.http.HttpStatus
+import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 
 @RestController
-open class StudentController(
-    val studentService: StudentService
-) {
+@RequestMapping("/api/students")
+class StudentController(private val service: StudentService) {
 
-    private val logger = LoggerFactory.getLogger(StudentController::class.java)
-
-    @PostMapping("/students")
-    open fun createStudent(
-        @RequestBody
-        request: StudentRequest
-    ): StudentResponse {
-        logger.info("Creating student ${request.name}")
-        return studentService.createStudent(request)
+    @PostMapping
+    fun create(@RequestBody request: StudentRequest): ResponseEntity<Any> {
+        return ResponseEntity(service.create(request), HttpStatus.CREATED)
     }
 
-    @GetMapping("/students")
-    open fun getAllStudents(): List<StudentResponse> {
-        logger.info("Getting all students")
-        return studentService.getAllStudents()
+    @GetMapping
+    fun getAll(): ResponseEntity<Any> {
+        return ResponseEntity.ok(service.getAll())
     }
 
+    @GetMapping("/{id}")
+    fun getById(@PathVariable id: Long): ResponseEntity<Any> {
+        return ResponseEntity.ok(service.getById(id))
+    }
 
+    @PutMapping("/{id}")
+    fun update(@PathVariable id: Long, @RequestBody request: StudentRequest): ResponseEntity<Any> {
+        return ResponseEntity.ok(service.update(id, request))
+    }
+
+    @DeleteMapping("/{id}")
+    fun delete(@PathVariable id: Long): ResponseEntity<Void> {
+        service.delete(id)
+        return ResponseEntity.noContent().build()
+    }
 }

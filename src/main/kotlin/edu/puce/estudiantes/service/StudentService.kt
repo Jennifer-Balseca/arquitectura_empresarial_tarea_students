@@ -2,53 +2,29 @@ package edu.puce.estudiantes.service
 
 import edu.puce.estudiantes.dto.StudentRequest
 import edu.puce.estudiantes.dto.StudentResponse
+import edu.puce.estudiantes.Mappers.StudentMapper
 import edu.puce.estudiantes.entity.Student
+import edu.puce.estudiantes.exceptions.BlankMesaggeException
 import edu.puce.estudiantes.repository.StudentRepository
-import org.slf4j.LoggerFactory
 import org.springframework.stereotype.Service
+import edu.puce.estudiantes.exceptions.StudentNotFoundException
 
 @Service
-open class StudentService(
-    private val studentRepository: StudentRepository
-) {
-
-    private val logger = LoggerFactory.getLogger(StudentService::class.java)
-
-    open fun createStudent(request: StudentRequest): StudentResponse {
-        logger.info("Creating student ${request.name}")
-
-        // validar
-
-        // crear entidad
-        val studentEntity = Student(
-            name = request.name,
-            email = request.email
-        )
-
-        // guardar entidad
-        val savedStudent = studentRepository.save(studentEntity)
-
-        // retornar response
-        return StudentResponse(
-            id = savedStudent.id ?: 0L,
-            name = savedStudent.name,
-            email = savedStudent.email
-        )
+class StudentService(private val repository: StudentRepository, private val mapper: StudentMapper) {
+    fun create(req: StudentRequest): StudentResponse {
+        if (req.name.isBlank()) throw BlankMesaggeException("El nombre no puede estar vacío")
+        return mapper.toResponse(repository.save(mapper.toEntity(req)))
     }
-
-    open fun getAllStudents(): List<StudentResponse> {
-        logger.info("Getting all students")
-
-        // consultar todos los estudiantes
-        val savedStudents = studentRepository.findAll()
-
-        // convertir al response adecuado
-        return savedStudents.map {
-            StudentResponse(
-                id = it.id ?: 0L,
-                name = it.name,
-                email = it.email
-            )
-        }
+    fun getAll() = repository.findAll().map { mapper.toResponse(it) }
+    fun getById(id: Long) = mapper.toResponse(repository.findById(id).orElseThrow { StudentNotFoundException("Estudiante no encontrado") })
+    fun update(id: Long, req: StudentRequest): StudentResponse {
+        if (req.name.isBlank()) throw BlankMesaggeException("El nombre no puede estar vacío")
+        val existing = repository.findById(id).orElseThrow { StudentNotFoundException("Estudiante no encontrado") }
+        val updated = Student(id = existing.id, name = req.name, email = req.email)
+        return mapper.toResponse(repository.save(updated))
+    }
+    fun delete(id: Long) {
+        if (!repository.existsById(id)) throw StudentNotFoundException("Estudiante no encontrado")
+        repository.deleteById(id)
     }
 }
