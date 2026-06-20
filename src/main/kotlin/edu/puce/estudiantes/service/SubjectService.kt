@@ -1,12 +1,12 @@
 package edu.puce.estudiantes.service
 
-import edu.puce.estudiantes.Mappers.SubjectMapper
+import edu.puce.estudiantes.mapper.SubjectMapper
 import edu.puce.estudiantes.dto.SubjectRequest
 import edu.puce.estudiantes.dto.SubjectResponse
 import edu.puce.estudiantes.entity.Subject
 import edu.puce.estudiantes.exceptions.BlankMesaggeException
-import edu.puce.estudiantes.repository.ProfessorRepository
-import edu.puce.estudiantes.repository.SubjectRepository
+import edu.puce.estudiantes.repositories.ProfessorRepository
+import edu.puce.estudiantes.repositories.SubjectRepository
 import org.springframework.stereotype.Service
 import edu.puce.estudiantes.exceptions.SubjectNotFoundException
 import edu.puce.estudiantes.exceptions.ProfessorNotFoundException

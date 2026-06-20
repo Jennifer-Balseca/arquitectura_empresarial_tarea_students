@@ -2,10 +2,10 @@ package edu.puce.estudiantes.service
 
 import edu.puce.estudiantes.dto.StudentRequest
 import edu.puce.estudiantes.dto.StudentResponse
-import edu.puce.estudiantes.Mappers.StudentMapper
+import edu.puce.estudiantes.mapper.StudentMapper
 import edu.puce.estudiantes.entity.Student
 import edu.puce.estudiantes.exceptions.BlankMesaggeException
-import edu.puce.estudiantes.repository.StudentRepository
+import edu.puce.estudiantes.repositories.StudentRepository
 import org.springframework.stereotype.Service
 import edu.puce.estudiantes.exceptions.StudentNotFoundException
 

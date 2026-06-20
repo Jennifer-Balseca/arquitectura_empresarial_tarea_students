@@ -1,7 +1,7 @@
 package edu.puce.estudiantes.service
 
-import edu.puce.estudiantes.Mappers.StudentMapper
-import edu.puce.estudiantes.Mappers.SubjectMapper
+import edu.puce.estudiantes.mapper.StudentMapper
+import edu.puce.estudiantes.mapper.SubjectMapper
 import edu.puce.estudiantes.dto.EnrollmentResponse
 import edu.puce.estudiantes.entity.Enrollment
 import org.springframework.stereotype.Component

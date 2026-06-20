@@ -3,9 +3,9 @@ package edu.puce.estudiantes.service
 import edu.puce.estudiantes.dto.EnrollmentRequest
 import edu.puce.estudiantes.dto.EnrollmentResponse
 import edu.puce.estudiantes.entity.Enrollment
-import edu.puce.estudiantes.repository.EnrollmentRepository
-import edu.puce.estudiantes.repository.StudentRepository
-import edu.puce.estudiantes.repository.SubjectRepository
+import edu.puce.estudiantes.repositories.EnrollmentRepository
+import edu.puce.estudiantes.repositories.StudentRepository
+import edu.puce.estudiantes.repositories.SubjectRepository
 import org.springframework.stereotype.Service
 import edu.puce.estudiantes.exceptions.EnrollmentNotFoundException
 import edu.puce.estudiantes.exceptions.SubjectNotFoundException

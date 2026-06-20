@@ -1,4 +1,4 @@
-package edu.puce.estudiantes.Mappers
+package edu.puce.estudiantes.mapper
 
 import edu.puce.estudiantes.dto.StudentRequest
 import edu.puce.estudiantes.dto.StudentResponse
