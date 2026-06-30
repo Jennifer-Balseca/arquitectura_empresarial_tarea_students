@@ -1,4 +1,4 @@
-package edu.puce.estudiantes.service
+package edu.puce.estudiantes.mapper
 
 import edu.puce.estudiantes.mapper.StudentMapper
 import edu.puce.estudiantes.mapper.SubjectMapper

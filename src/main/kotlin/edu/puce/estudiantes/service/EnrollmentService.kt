@@ -2,6 +2,7 @@ package edu.puce.estudiantes.service
 
 import edu.puce.estudiantes.dto.EnrollmentRequest
 import edu.puce.estudiantes.dto.EnrollmentResponse
+import edu.puce.estudiantes.mapper.EnrollmentMapper
 import edu.puce.estudiantes.entity.Enrollment
 import edu.puce.estudiantes.repositories.EnrollmentRepository
 import edu.puce.estudiantes.repositories.StudentRepository
